@@ -24,7 +24,7 @@ public class UuserController {
     @Resource
     RoleService roleService;
     //跳转至user.jsp
-    @RequestMapping("/user")
+    @RequestMapping("/sys/user")
     public String user(HttpServletRequest res){
         //获取角色权限的所有值传递到user.jsp页面
         List<Role> roleList = roleService.getAllRole();

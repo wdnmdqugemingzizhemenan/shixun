@@ -7,13 +7,13 @@
 			{
 				"title": "用户管理",
 				"icon": "&#xe66f;",
-				"href": "/user",
+				"href": "/sys/user",
 				"spread": false
 			},
 			{
 				"title": "角色管理",
 				"icon": "&#xe673;",
-				"href": "/role",
+				"href": "/sys/role",
 				"spread": false
 			}
 		]
@@ -26,7 +26,7 @@
 			{
 				"title": "客房管理",
 				"icon": "&#xe61c;",
-				"href": "/room",
+				"href": "/sys/room",
 				"spread": false
 			}
 		]
@@ -40,13 +40,13 @@
 			{
 				"title": "开房管理",
 				"icon": "&#xe61c;",
-				"href": "/recard",
+				"href": "/sys/recard",
 				"spread": false
 			},
 			{
 				"title": "退房管理",
 				"icon": "&#xe609;",
-				"href": "/checkout",
+				"href": "/sys/checkout",
 				"spread": false
 			}
 

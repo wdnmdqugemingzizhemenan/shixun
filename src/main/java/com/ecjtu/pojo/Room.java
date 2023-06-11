@@ -4,9 +4,17 @@ import lombok.Data;
 
 @Data
 public class Room {
-    private int roomid;
+    private Integer roomid;
     private String roomtype;
-    private Double price;
+    private double price;
     private String state;
 
+    public Room() {
+    }
+
+    public Room(Integer roomid, String roomtype, String state) {
+        this.roomid = roomid;
+        this.roomtype = roomtype;
+        this.state = state;
+    }
 }

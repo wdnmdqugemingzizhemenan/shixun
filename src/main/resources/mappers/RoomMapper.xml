@@ -10,33 +10,32 @@
         <result column="price" property="price"></result>
         <result column="state" property="state"></result>
     </resultMap>
-    <select id="getAllRoom" resultType="room">
-        select * from hotel_room
-    </select>
-    <!--模糊查询-->
-    <select id="findRoomByRoom" resultType="room" resultMap="roomMap">
-        select * from hotel_room
-        where 1>0
-        <if test="roomid!='' and roomid!=null">
-          and  roomid = #{roomid}
-        </if>
-        <if test="roomtype!=null and roomtype!=''">
-            and roomtype = #{roomtype}
-        </if>
-        <if test="state!=null and state!=''">
-            and state = #{state}
-        </if>
-    </select>
 
     <!--新增用户-->
     <insert id="addRoom" parameterType="room">
-      insert into hotel_room values (#{roomid},#{roomtype},
-      #{price},#{state})
+        insert into hotel_room values (#{roomid},#{roomtype},
+                                       #{price},#{state})
     </insert>
     <!--删除用户-->
     <delete id="deleteRoom">
         delete from hotel_room where roomid = #{roomid}
     </delete>
+    <select id="findRoomByRoom" resultType="room">
+        select * from hotel_room
+        where 1=1
+        <if test="price!=0 and price!=null">
+            and price = #{price}
+        </if>
+        <if test="roomid!=0 and roomid!=null">
+            and roomid = #{roomid}
+        </if>
+        <if test="roomtype!=null and roomtype!=''">
+            and roomtype = #{roomtype}
+        </if>
+        <if test="state!=null and state!=''">
+            and state =#{state}
+        </if>
+    </select>
     <update id="updateRoom" parameterType="room">
         update hotel_room
         <set>
@@ -49,7 +48,4 @@
         </set>
         WHERE roomid = #{roomid}
     </update>
-    <select id="getRoom" resultType="room" resultMap="roomMap">
-        select * from hotel_room where roomid = #{roomid}
-    </select>
 </mapper>

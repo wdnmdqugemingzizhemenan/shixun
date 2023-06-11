@@ -22,7 +22,7 @@ import java.util.List;
 public class RecardController {
     @Resource
     RecardService recardService;
-    @RequestMapping("/recard")
+    @RequestMapping("/sys/recard")
     public String recard(HttpServletRequest res){
         //获取角色权限的所有值传递到user.jsp页面
         List<Room> recardList = recardService.getFreeRoom();
@@ -33,7 +33,7 @@ public class RecardController {
     @ResponseBody //不返回视图，直接写入页面
     //返回给layui使用，返回值必须包含某些字段
     public DataVo getAllUsers(@RequestParam(defaultValue = "1") int page,
-                              @RequestParam(defaultValue = "10") int limit,
+                              @RequestParam(defaultValue = "8") int limit,
                               Room room){
         //设置分页的参数
         PageHelper.startPage(page,limit);//设置当前页和每页的数量

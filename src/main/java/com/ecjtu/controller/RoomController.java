@@ -21,22 +21,25 @@ public class RoomController {
     @Resource
     RoomService roomService;
     //跳转至room.jsp
-    @RequestMapping("/room")
+    @RequestMapping("/sys/room")
     public String user(){
         //获取角色权限的所有值传递到user.jsp页面
         return "room";
     }
     @RequestMapping("/getAllRoom")
-    @ResponseBody
-    public DataVo getAllRooms(@RequestParam(defaultValue = "1") int page,
-                              @RequestParam(defaultValue = "8") int limit,
-                              Room room){
+    @ResponseBody //不返回视图，直接写入页面
+    //返回给layui使用，返回值必须包含某些字段
+    public DataVo getAllUsers(@RequestParam(defaultValue = "1") Integer page,
+                              @RequestParam(defaultValue = "8") Integer limit,
+                              @RequestParam(required = false,value = "roomid")Integer roomid,
+                              @RequestParam(required = false,value = "roomtype")String roomtype,
+                              @RequestParam(required = false,value = "state")String state){
         //初始化查询的User对象
-        /*Room room = new Room(roomid,roomtype,state);*/
+        Room room = new Room(roomid,roomtype,state);
         //设置分页的参数
         PageHelper.startPage(page,limit);//设置当前页和每页的数量
         //获取数据
-        List<Room> list = roomService.getRooms(room);
+        List<Room> list = roomService.getRoom(room);
         //获取分页的信息,将要分页的数据给分页工具
         PageInfo<Object> pageInfo = new PageInfo(list);
         //封装的layui数据根据分页对象来获取

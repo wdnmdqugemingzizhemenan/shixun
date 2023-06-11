@@ -18,7 +18,7 @@ public class RoleController {
     @Resource
     RoleService roleService;
     //跳转至role.jsp
-    @RequestMapping("/role")
+    @RequestMapping("/sys/role")
     public String user(HttpServletRequest res){
         return "role";
     }
@@ -27,7 +27,7 @@ public class RoleController {
     @ResponseBody //不返回视图，直接写入页面
     //返回给layui使用，返回值必须包含某些字段
     public DataVo getAllUsers(@RequestParam(defaultValue = "1") int page,
-                              @RequestParam(defaultValue = "10") int limit){
+                              @RequestParam(defaultValue = "8") int limit){
         //设置分页的参数
         PageHelper.startPage(page,limit);//设置当前页和每页的数量
         //获取数据

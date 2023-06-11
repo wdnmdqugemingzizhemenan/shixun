@@ -21,7 +21,7 @@ import java.util.List;
 public class CheckController {
     @Resource
     RecardService recardService;
-    @RequestMapping("/checkout")
+    @RequestMapping("/sys/checkout")
     public String checkout(HttpServletRequest res){
         //获取角色权限的所有值传递到user.jsp页面
         List<Recard> checkList = recardService.getRecard();
@@ -32,12 +32,12 @@ public class CheckController {
     @ResponseBody //不返回视图，直接写入页面
     //返回给layui使用，返回值必须包含某些字段
     public DataVo getAllUsers(@RequestParam(defaultValue = "1") int page,
-                              @RequestParam(defaultValue = "10") int limit,
+                              @RequestParam(defaultValue = "8") int limit,
                               @RequestParam(required = false,value = "name")String name,
                               @RequestParam(required = false,value = "roomid")Integer roomid,
                               @RequestParam(required = false,value = "roomtype")String roomtype,
                               @RequestParam(required = false,value = "stime")Date stime
-                              ){
+    ){
 
         Recard recard = new Recard();
         if (name != null){

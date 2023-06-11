@@ -2,12 +2,14 @@ package com.ecjtu.controller;
 
 import com.ecjtu.pojo.User;
 import com.ecjtu.service.UserService;
+import com.ecjtu.tools.Constants;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @SessionAttributes(value = "user")//将model中数据同步到session中
@@ -20,7 +22,7 @@ public class LoginController {
         return "login";
     }
     @RequestMapping("/toLogin")
-    public ModelAndView toLogin(User user){
+    public ModelAndView toLogin(User user, HttpSession session){
         User u = userService.login(user.getUsername(),user.getPassword());
         ModelAndView modelAndView = new ModelAndView();
         System.out.println(u);
@@ -28,6 +30,7 @@ public class LoginController {
         if (u!=null) {
             //将user存进session中
             modelAndView.addObject("user",u);
+            session.setAttribute(Constants.User_SESSION, user);
             modelAndView.setViewName("index");
         }else {
             modelAndView.addObject("error","账号或密码错误!");
