@@ -54,7 +54,7 @@
                     <label class="layui-form-label">开房时间:</label>
                     <div class="layui-input-inline">
                         <input type="date" name="stime" autocomplete="off"
-                               class="layui-input">
+                               class="layui-input" readonly>
                     </div>
                 </div>
             <div class="layui-form-item">
