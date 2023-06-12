@@ -14,18 +14,46 @@
   <link rel="stylesheet" href="../css/public.css" media="all" />
 </head>
 <body class="childrenBody">
-<blockquote class="layui-elem-quote layui-bg-green">
-  <div id="nowTime"></div>
-</blockquote>
-<div>
-  <p>用户编号:<span>${user.id}</span></p>
-  <p>用户姓名:<span>${user.username}</span></p>
-  <p>用户电话:<span>${user.tel}</span></p>
-  <p>用户角色:<span>${user.role}</span></p>
-  <p>工作照:<span><img src="../images/233.jpg"></span></p>
+<div style="padding: 20px" >
+  <%--编号在数据库中通过索引自动生成--%>
+  <div>
+          <span>
+          <label class="layui-form-label">用户编号:</label>
+            <input type="text" name="id" style="width: 200px;"
+                   class="layui-input" value="${user.id}" readonly></span>
+  </div>
+  <div>
+        <span>
+        <label class="layui-form-label">用户编码:</label>
+          <input type="text" name="username" style="width: 200px;"
+                 class="layui-input" value="${user.username}" readonly></span>
+  </div>
+  <div>
+        <span>
+        <label class="layui-form-label">密码:</label>
+          <input type="password" name="password" style="width: 200px;" class="layui-input"
+                 value="${user.password}" readonly></span>
+  </div>
+  <div>
+        <span>
+        <label class="layui-form-label">电话:</label>
+          <input type="text" name="tel" style="width: 200px;" class="layui-input"
+                 value="${user.tel}" readonly></span>
+  </div>
+  <div>
+        <span>
+        <label class="layui-form-label">角色:</label>
+          <input type="text" name="tel" style="width: 200px;" class="layui-input"
+                 value="${user.role}" readonly></span>
+  </div>
+  <div>
+    <label>工作照片:</label>
+    <span><img id="a_workPic" src="../images/233.jpg" alt=""/></span>
+  </div>
 </div>
 <script type="text/javascript" src="../layui/layui.js"></script>
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/userSelf.js"></script>
+
 </body>
 </html>
