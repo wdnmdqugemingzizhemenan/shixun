@@ -8,13 +8,21 @@ import com.ecjtu.pojo.User;
 import com.ecjtu.pojo.DataVo;
 import com.ecjtu.service.RoleService;
 import com.ecjtu.service.UserService;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -63,9 +71,9 @@ public class UuserController {
     @ResponseBody
     public String addUser(User user){
         int a = userService.register(user);
-        if(a>0){
+        if (a > 0) {
             return "添加成功!";
-        }else{
+        } else {
             return "添加失败!";
         }
     }
@@ -90,5 +98,11 @@ public class UuserController {
         }else{
             return "删除失败!";
         }
+    }
+    @RequestMapping("/viewSelf/{uid}")
+    public String viewSelf(@PathVariable String uid, Model model){
+        User user = userService.getUserInfo(Integer.parseInt(uid));
+        model.addAttribute(user);
+        return "userSelf";
     }
 }

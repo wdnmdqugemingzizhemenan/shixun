@@ -5,12 +5,13 @@
 <!--namespace绑定一个对应的Mapper接口-->
 <mapper namespace="com.ecjtu.dao.UserMapper">
     <resultMap id="userMap" type="user">
-        <id column="id" property="id"></id>
-        <result column="username" property="username"></result>
-        <result column="password" property="password"></result>
-        <result column="tel" property="tel"></result>
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="tel" property="tel"/>
+       <result column="workPic" property="workPic"/>
 <!--        <result column="role" property="role"></result>-->
-        <result column="name" property="role"></result>
+        <result column="name" property="role"/>
     </resultMap>
     <select id="findUserByNameAndPsw"
             resultType="user" resultMap="userMap">
@@ -21,9 +22,6 @@
     <select id="findUserByUser" resultType="user" resultMap="userMap">
         select * from hotel_user h1,hotel_role h2
         where h1.role=h2.id
-        <if test="id!=0">
-            and id = #{id}
-        </if>
         <if test="username!=null and username!=''">
             and username like '%${username}%'
         </if>
@@ -39,8 +37,9 @@
     </select>
     <!--新增用户-->
     <insert id="addUser" parameterType="user">
-      insert into hotel_user values (null,#{username},#{password},
-      #{tel},#{role})
+      insert into hotel_user(username,password,tel
+      ,role,workPic) values (#{username},#{password},
+      #{tel},#{role},#{workPic})
     </insert>
     <!--删除用户-->
     <delete id="deleteUserById">
@@ -60,6 +59,9 @@
             </if>
             <if test="role != null and role != ''">
                 role = #{role}
+            </if>
+            <if test="workPic != null and workPic != ''">
+                workPic = #{workPic}
             </if>
         </set>
         WHERE id = #{id}

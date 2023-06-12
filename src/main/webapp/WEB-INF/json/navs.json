@@ -15,6 +15,12 @@
 				"icon": "&#xe673;",
 				"href": "/sys/role",
 				"spread": false
+			},
+			{
+				"title": "个人信息管理",
+				"icon": "&#xe673;",
+				"href": "/viewSelf/3",
+				"spread": false
 			}
 		]
 	},

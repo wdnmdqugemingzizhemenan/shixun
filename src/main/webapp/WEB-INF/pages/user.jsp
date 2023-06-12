@@ -79,13 +79,6 @@
         <div class="layui-form-item">
             <%--编号在数据库中通过索引自动生成--%>
             <div class="layui-inline">
-                <label class="layui-form-label">编号:</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="id"  lay-verify="required" autocomplete="off"
-                           class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
                 <label class="layui-form-label">用户名:</label>
                 <div class="layui-input-inline">
                     <input type="text" name="username" autocomplete="off"
@@ -114,6 +107,10 @@
                     酒店经理<input type="radio" name="role" value="2" lay-verify="required" autocomplete="off" class="layui-input">
                     酒店后勤<input type="radio" name="role" value="3" lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
+            </div>
+            <div class="layui-inline">
+                <label for="a_workPic" class="layui-form-label">工作照片:</label>
+                <input type="file" name="attachs" id="a_workPic" value="">
             </div>
         </div>
         <div class="layui-form-item" style="text-align: center;">
