@@ -31,13 +31,13 @@
     <div>
         <span>
         <label class="layui-form-label">密码:</label>
-          <input type="password" name="password" style="width: 200px;" class="layui-input" layui-verify="pass"
+          <input type="password" name="password" style="width: 200px;" class="layui-input" lay-verify="pass"
                  value="${user.password}" readonly></span>
     </div>
     <div>
         <span>
         <label class="layui-form-label">电话:</label>
-          <input type="text" name="tel" style="width: 200px;" class="layui-input" layui-verify="phone"
+          <input type="text" name="tel" style="width: 200px;" class="layui-input" lay-verify="phone"
                  value="${user.tel}" readonly></span>
     </div>
     <div>
@@ -58,7 +58,7 @@
     layui.use(['form'], function () {
         var form = layui.form;
         form.verify({
-            password: [
+            pass: [
                 /^[\S]{3,10}$/
                 , '密码必须3到10位，且不能出现空格'
             ]
