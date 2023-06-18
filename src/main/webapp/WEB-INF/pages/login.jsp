@@ -28,7 +28,7 @@
     <div class="layui-form-item input-item">
         <label for="password">密码</label>
         <input type="password" placeholder="请输入密码" autocomplete="off" id="password" name="password"
-               class="layui-input" lay-verify="required|pass">
+               class="layui-input" lay-verify="required">
     </div>
     <%--<div class="layui-form-item input-item" id="imgCode">
         <label for="code">验证码</label>
@@ -51,17 +51,9 @@
             //layer = parent.layer === undefined ? layui.layer : top.layer,
             $ = layui.jquery;
 
-        form.verify({
-            pass: [
-                /^[\S]{3,10}$/
-                , '密码必须3到10位，且不能出现空格'
-            ]
-        });
 
         //登录按钮
         form.on("submit(login)", function (data) {
-            //表单校验
-            form.verify();
             $(this).text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
             form.val("login", data);
             setTimeout(function () {

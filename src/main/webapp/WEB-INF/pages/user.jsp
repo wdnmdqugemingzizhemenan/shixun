@@ -35,7 +35,8 @@
         <div class="layui-inline">
             <label class="layui-form-label">手机号:</label>
             <div class="layui-input-inline">
-                <input type="tel" name="tel" autocomplete="off" class="layui-input" lay-verrify="phone">
+                <input id="tel" type="tel" name="tel" autocomplete="off" class="layui-input">
+                <span class="error-msg"></span>
             </div>
         </div>
         <div class="layui-inline">
@@ -92,14 +93,16 @@
                 <label class="layui-form-label">密码:</label>
                 <div class="layui-input-inline">
                     <input type="text" name="password" autocomplete="off"
-                           class="layui-input" lay-verify="pass">
+                           class="layui-input" id="pass">
+                    <span class="error-msg3"></span>
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">电话:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="tel" lay-verify="required|phone" autocomplete="off"
+                    <input type="text" id="tel2" name="tel" lay-verify="required" autocomplete="off"
                            class="layui-input">
+                    <span class="error-msg2"></span>
                 </div>
             </div>
             <div class="layui-inline">
@@ -188,12 +191,44 @@
             ]]
         });
 
-        form.verify({
-            pass: [
-                /^[\S]{3,10}$/
-                , '密码必须3到10位，且不能出现空格'
-            ]
-        })
+
+        // 手机号校验
+        $("#tel").on('input', function () {
+            var phone = $this.val().trim();
+            var pattern = /^\d{11}$/;
+            if (!pattern.test(phone)) {
+                $(this).addClass("error");
+                $(this).siblings(".error-msg").text("请输入正确的手机号码").show();
+            } else {
+                $(this).removeClass("error");
+                $(this).siblings(".error-msg").text("").hide();
+            }
+        });
+        $("#tel2").on('input', function () {
+            var phone = $this.val().trim();
+            var pattern = /^\d{11}$/;
+            if (!pattern.test(phone)) {
+                $(this).addClass("error2");
+                $(this).siblings(".error-msg2").text("请输入正确的手机号码").show();
+            } else {
+                $(this).removeClass("error2");
+                $(this).siblings(".error-msg2").text("").hide();
+            }
+        });
+
+        // 密码校验
+        $("#pass").on('input', function () {
+            var password = $this.val().trim();
+            var pattern = /^\d{3,10}$/;
+            if (!pattern.test(password)) {
+                $(this).addClass("error3");
+                $(this).siblings(".error-msg3").text("密码需要在3~10位").show();
+            } else {
+                $(this).removeClass("error3");
+                $(this).siblings(".error-msg3").text("").hide();
+            }
+        });
+
         //监听头部工具栏事件
         table.on("toolbar(userTable)", function (obj) {
             switch (obj.event) {
@@ -305,8 +340,6 @@
 
         //保存
         form.on("submit(doSubmit)", function (obj) {
-            //验证表单
-            form.verify();
             //序列化表单数据
             var params = $("#dataFrm").serialize();
             var res = $.post(url, params, function (obj) {
