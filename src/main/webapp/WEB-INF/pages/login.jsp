@@ -10,15 +10,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="icon" href="../images/favicon.ico">
-    <link rel="stylesheet" href="../layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="../css/main.css" media="all" />
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../css/main.css" media="all"/>
 </head>
 <body class="loginBody">
 <form class="layui-form" id="loginFrm" method="post" action="/toLogin">
     <div class="login_face"><img src="../images/face.jpg" class="userAvatar"></div>
     <div class="layui-form-item input-item">
         <label for="username">用户名</label>
-        <input type="text" placeholder="请输入用户名" autocomplete="off" id="username" name="username" class="layui-input" lay-verify="required">
+        <input type="text" placeholder="请输入用户名" autocomplete="off" id="username" name="username"
+               class="layui-input" lay-verify="required">
     </div>
     <!--显示登录错误的信息-->
     <div style="color:red;font-size: 20px;">${error}</div>
@@ -26,7 +27,8 @@
     <br/>
     <div class="layui-form-item input-item">
         <label for="password">密码</label>
-        <input type="password" placeholder="请输入密码" autocomplete="off" id="password" name="password" class="layui-input" lay-verify="required">
+        <input type="password" placeholder="请输入密码" autocomplete="off" id="password" name="password"
+               class="layui-input" lay-verify="required|pass">
     </div>
     <%--<div class="layui-form-item input-item" id="imgCode">
         <label for="code">验证码</label>
@@ -44,34 +46,41 @@
 <script type="text/javascript" src="../layui/layui.js"></script>
 <script type="text/javascript" src="../js/cache.js"></script>
 <script type="text/javascript">
-    layui.use(['form','layer','jquery'],function(){
+    layui.use(['form', 'layer', 'jquery'], function () {
         var form = layui.form,
             //layer = parent.layer === undefined ? layui.layer : top.layer,
             $ = layui.jquery;
 
         //登录按钮
-        form.on("submit(login)",function(data){
-            $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
-            form.val("login",data);
-            setTimeout(function(){
+        form.on("submit(login)", function (data) {
+            $(this).text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
+            form.val("login", data);
+            setTimeout(function () {
                 $("#loginFrm").submit();
-            },1000);
+            }, 1000);
             return false;
         });
 
+        form.verify({
+            pass: [
+                /^[\S]{3,10}$/
+                , '密码必须3到10位，且不能出现空格'
+            ]
+        });
+
         //表单输入效果
-        $(".loginBody .input-item").click(function(e){
+        $(".loginBody .input-item").click(function (e) {
             e.stopPropagation();
             $(this).addClass("layui-input-focus").find(".layui-input").focus();
         });
-        $(".loginBody .layui-form-item .layui-input").focus(function(){
+        $(".loginBody .layui-form-item .layui-input").focus(function () {
             $(this).parent().addClass("layui-input-focus");
         });
-        $(".loginBody .layui-form-item .layui-input").blur(function(){
+        $(".loginBody .layui-form-item .layui-input").blur(function () {
             $(this).parent().removeClass("layui-input-focus");
-            if($(this).val() != ''){
+            if ($(this).val() != '') {
                 $(this).parent().addClass("layui-input-active");
-            }else{
+            } else {
                 $(this).parent().removeClass("layui-input-active");
             }
         });

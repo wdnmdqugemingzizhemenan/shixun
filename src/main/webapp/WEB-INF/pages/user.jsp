@@ -35,7 +35,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">手机号:</label>
             <div class="layui-input-inline">
-                <input type="tel" name="tel"  autocomplete="off" class="layui-input">
+                <input type="tel" name="tel"  autocomplete="off" class="layui-input" lay-verrify="phone">
             </div>
         </div>
         <div class="layui-inline">
@@ -89,13 +89,13 @@
                     <label class="layui-form-label">密码:</label>
                     <div class="layui-input-inline">
                         <input type="text" name="password" autocomplete="off"
-                               class="layui-input">
+                               class="layui-input" lay-verify="pass">
                     </div>
                 </div>
             <div class="layui-inline">
                 <label class="layui-form-label">电话:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="tel"  lay-verify="required|tel" autocomplete="off"
+                    <input type="text" name="tel"  lay-verify="required|phone" autocomplete="off"
                            class="layui-input">
                 </div>
             </div>
@@ -179,6 +179,12 @@
             ]]
         });
 
+        form.verify({
+            pass:[
+                /^[\S]{3,10}$/
+                ,'密码必须3到10位，且不能出现空格'
+            ]
+        })
         //监听头部工具栏事件
         table.on("toolbar(userTable)",function(obj){
             switch(obj.event){
