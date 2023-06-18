@@ -51,8 +51,17 @@
             //layer = parent.layer === undefined ? layui.layer : top.layer,
             $ = layui.jquery;
 
+        form.verify({
+            pass: [
+                /^[\S]{3,10}$/
+                , '密码必须3到10位，且不能出现空格'
+            ]
+        });
+
         //登录按钮
         form.on("submit(login)", function (data) {
+            //表单校验
+            form.verify();
             $(this).text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
             form.val("login", data);
             setTimeout(function () {
@@ -61,12 +70,6 @@
             return false;
         });
 
-        form.verify({
-            pass: [
-                /^[\S]{3,10}$/
-                , '密码必须3到10位，且不能出现空格'
-            ]
-        });
 
         //表单输入效果
         $(".loginBody .input-item").click(function (e) {

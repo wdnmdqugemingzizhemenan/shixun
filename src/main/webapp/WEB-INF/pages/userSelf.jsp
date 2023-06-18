@@ -54,17 +54,5 @@
 <script type="text/javascript" src="../layui/layui.js"></script>
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/userSelf.js"></script>
-<script>
-    layui.use(['form'], function () {
-        var form = layui.form;
-        form.verify({
-            pass: [
-                /^[\S]{3,10}$/
-                , '密码必须3到10位，且不能出现空格'
-            ]
-        })
-    });
-</script>
-
 </body>
 </html>
